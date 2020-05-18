@@ -1,0 +1,39 @@
+<div class="example-container">
+  <form [formGroup]="transactionFormGroup"  (ngSubmit)="onSubmit($event)" class="example-form">
+    <div class="heading">New Transaction</div>
+    <!-- <p>
+      <mat-select class="custom-select" (change)="onchangetype($event)" formControlName="cardtype">
+        <option value="">Choose your Cardtype</option>
+        <option *ngFor="let card of cards">{{card}}</option>
+      </mat-select>
+    </p> -->
+    <mat-form-field>
+
+      <mat-select>
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let card of cards" [value]="card">
+          {{card}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p>
+        <mat-form-field class="example-full-width">
+
+          <input matInput formControlName="Amount" [errorStateMatcher]="matcher" required>
+          <!-- <mat-error *ngIf="Amount.hasError('required')">{{getErrorMessage()}}</mat-error> -->
+        </mat-form-field>
+      </p>
+      <p>
+          <mat-form-field class="example-full-width">
+              <mat-label></mat-label>
+                <textarea matInput formControlName="Description" [errorStateMatcher]="matcher" required></textarea>
+                <!-- <mat-error *ngIf="Description.hasError('required')">{{ErrorMessage()}}</mat-error> -->
+          </mat-form-field>
+        </p>
+
+    <button mat-button type="submit">Save</button>
+    &nbsp;
+    <button mat-button type="button" (click)="close()">Cancel</button>
+
+  </form>
+  </div>
